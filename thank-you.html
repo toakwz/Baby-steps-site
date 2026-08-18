@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're In — Baby Steps to Choosing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-solid: #060605;
+    --panel: #0c0b09;
+    --cream: #efe9db;
+    --muted: #948d7d;
+    --gold: #c9a24a;
+    --gold-dim: #4a3d21;
+    --serif: 'Fraunces', serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-solid);
+    color:var(--cream);
+    font-family:var(--serif);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:680px; margin:0 auto; padding:0 28px;}
+  .wrap-wide{max-width:1080px; margin:0 auto; padding:0 28px;}
+
+  .story-layout{
+    display:grid;
+    grid-template-columns:1fr 300px;
+    gap:70px;
+    align-items:start;
+  }
+
+  .sidebar{
+    position:sticky; top:60px;
+    background:var(--panel);
+    border:1px solid var(--gold-dim);
+    padding:34px 30px;
+  }
+  .sidebar .eyebrow{margin-bottom:22px; display:block; text-align:left;}
+  .sidebar-list{list-style:none;}
+  .sidebar-list li{
+    display:flex; gap:12px; align-items:flex-start;
+    padding:15px 0; border-bottom:1px solid rgba(201,162,74,0.15);
+    font-size:15.5px; color:#d6d0c2; line-height:1.5;
+  }
+  .sidebar-list li:last-child{border-bottom:none;}
+  .sidebar-list li::before{content:"—"; color:var(--gold); flex-shrink:0;}
+
+  .sidebar-guarantee{
+    margin-top:22px; padding-top:20px; border-top:1px solid var(--gold-dim);
+    font-size:13px; color:var(--gold); font-style:italic; letter-spacing:0.02em;
+  }
+
+  @media (max-width:900px){
+    .story-layout{grid-template-columns:1fr;}
+    .sidebar{position:static; margin-top:20px;}
+  }
+
+  .beam{
+    width:1px; height:70px; margin:0 auto;
+    background:linear-gradient(to bottom, transparent, var(--gold) 40%, transparent);
+    opacity:0.55;
+  }
+
+  .eyebrow{
+    font-family:var(--serif); font-size:13px; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--gold); font-weight:600; font-style:italic;
+    text-align:center; display:block;
+  }
+
+  .confirm{
+    text-align:center; padding:90px 0 40px;
+  }
+  .confirm h1{
+    font-size:clamp(28px,4vw,40px); font-weight:600; margin:16px 0 10px;
+  }
+  .confirm p{
+    color:var(--muted); font-size:16px; font-style:italic;
+  }
+
+  section{padding:50px 0;}
+
+  .headline{
+    text-align:center; font-size:clamp(26px,3.6vw,36px); font-weight:600;
+    margin-bottom:36px; line-height:1.3;
+  }
+
+  .story p{font-size:18px; color:#dcd6c8; margin-bottom:18px;}
+  .story p.tight{margin-bottom:6px;}
+  .story .gold{color:var(--gold); font-style:italic; font-weight:600;}
+
+  .divider-list{margin:30px 0;}
+  .divider-list p{margin-bottom:4px;}
+
+  .compare{
+    background:var(--panel); border:1px solid var(--gold-dim);
+    padding:32px 30px; margin:40px 0; border-radius:2px;
+  }
+  .compare-row{
+    display:flex; gap:18px; padding:14px 0; border-bottom:1px solid rgba(201,162,74,0.15);
+    font-size:16px; color:#dcd6c8;
+  }
+  .compare-row:last-child{border-bottom:none;}
+  .compare-row strong{color:var(--cream); font-weight:600; flex-shrink:0; width:110px;}
+
+  .price-block{
+    text-align:center; margin:48px 0 20px;
+  }
+  .price-was{
+    font-size:16px; color:var(--muted); text-decoration:line-through; margin-right:10px;
+  }
+  .price-now{
+    font-family:var(--serif); font-size:44px; color:var(--cream); font-weight:600;
+  }
+  .price-sub{
+    font-size:13px; color:var(--gold); text-transform:uppercase; letter-spacing:0.1em; margin-top:8px;
+  }
+
+  .offer-badge{
+    display:inline-block; font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+    color:#0a0a0a; background:var(--gold); padding:6px 16px; border-radius:20px;
+    margin-bottom:16px; font-weight:600;
+  }
+  .timer{
+    text-align:center; margin-bottom:18px;
+  }
+  .timer-label{
+    font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); margin-bottom:6px;
+  }
+  .timer-clock{
+    font-family:var(--serif); font-size:28px; color:var(--gold); font-weight:600; letter-spacing:0.04em;
+  }
+  .nudge{
+    max-width:560px; margin:0 auto 40px; text-align:center;
+  }
+  .nudge p{
+    font-size:17px; color:#dcd6c8; font-style:italic; margin-bottom:14px; line-height:1.6;
+  }
+  .urgency{
+    text-align:center; font-size:13.5px; color:var(--gold); font-style:italic;
+    margin-top:14px; letter-spacing:0.02em;
+  }
+
+  .btn{
+    display:inline-block; font-family:var(--serif); font-weight:600; font-size:15px;
+    letter-spacing:0.03em; color:#0a0a0a; background:var(--gold);
+    padding:18px 42px; border-radius:2px; text-decoration:none; border:1px solid var(--gold);
+    transition:all .25s ease;
+  }
+  .btn:hover{background:transparent; color:var(--gold);}
+  .cta-wrap{text-align:center; margin-top:28px;}
+
+  .fine-note{
+    text-align:center; font-size:14px; color:var(--muted); font-style:italic; margin-top:22px;
+  }
+
+  .skip{
+    text-align:center; margin:60px 0 40px;
+  }
+  .skip a{
+    color:var(--muted); font-size:14px; text-decoration:underline; text-underline-offset:4px;
+  }
+  .skip a:hover{color:var(--cream);}
+
+  footer{
+    text-align:center; padding:40px 24px; font-size:12px; color:#5c5648;
+  }
+</style>
+</head>
+<body>
+
+<div class="confirm wrap">
+  <span class="eyebrow">Order Confirmed</span>
+  <h1>You're in.</h1>
+  <p>Your copy of Baby Steps to Choosing is on its way to your inbox.</p>
+</div>
+
+<div class="wrap"><div class="beam"></div></div>
+
+<section>
+  <div class="wrap-wide">
+    <p class="headline">Still unsure about all this?</p>
+    <p style="text-align:center; font-weight:700; font-size:19px; color:var(--cream); margin:-20px 0 36px;">A part of me still doubted all this — though I knew it all.</p>
+
+    <div class="story-layout">
+    <div class="story">
+      <p class="tight-line">I wrote every word of it.</p>
+      <p>And deep down, I believed almost none of it.</p>
+
+      <p>Not consciously. Consciously I knew it was right. I could explain it, defend it, teach it.</p>
+
+      <p class="beat">But deep down? Barely anything.</p>
+
+      <p>So I searched. Past what I'd already written. Past what I'd already taught other people.</p>
+
+      <p>Looking for whatever I was still missing.</p>
+
+      <p>Until there was nowhere left to look.</p>
+
+      <p class="tight-line">No more books.</p>
+      <p class="tight-line">No more answers.</p>
+      <p>Nothing left outside myself to find.</p>
+
+      <p class="beat">And that's when it actually happened.</p>
+
+      <p>Not another realization. Not another belief.</p>
+
+      <p>I actually believed it. All of it. For the first time.</p>
+
+      <p class="beat">That was the real shift.</p>
+
+      <p>This book isn't for everyone.</p>
+
+      <p>It's for the ones who already read the first one. Who understood it. Who could probably teach it themselves.</p>
+
+      <p>And still — deep down — feel like it hasn't quite landed.</p>
+
+      <p>The ones aware they might be carrying fears they've never actually looked at.</p>
+
+      <p>The ones who know, and still don't quite <em>believe</em>.</p>
+
+      <p class="beat">You read it. You understand it. And yet — still, nothing.</p>
+
+      <p>I'm not going to give you another technique.</p>
+
+      <p class="tight-line">I'm going to prove it to you.</p>
+
+      <p>I'll take you down a rabbit hole — one so deep, you'll come out the other side of the earth.</p>
+
+      <p>If you're looking for a lightbulb moment. The click.</p>
+      <p class="beat">This is it.</p>
+
+      <p>If not, the guarantee still stands. You choose.</p>
+
+      <p>It's hard to fathom these ideas sometimes.</p>
+
+      <p>But if you do believe in yourself enough to know you don't need the guaranteed lightbulb.</p>
+
+      <p>You may continue anyway. Just recall why you're on this journey in the first place.</p>
+
+      <p class="beat">This will be the complete end of the road.</p>
+      <p class="tight-line">That's a guarantee.</p>
+
+      <p class="beat">In less than an hour. One sitting.</p>
+
+      <p>You could actually find the answer to the deepest question of all.</p>
+
+      <p class="tight-line">Is there God?</p>
+      <p>If so, how does God affect me?</p>
+
+      <p>No circles. No manifestation nonsense.</p>
+
+      <p class="beat">25 pages of reality.</p>
+
+      <p>That was unfathomable to me for years.</p>
+
+      <p class="tight-line">Now the rest is history.</p>
+      <p class="beat">The choice is yours.</p>
+    </div>
+
+    <aside class="sidebar">
+      <span class="eyebrow">Inside</span>
+      <ul class="sidebar-list">
+        <li>You will know nothing but the core truth.</li>
+        <li>You will understand what the infinite is.</li>
+        <li>Most significantly, you will be on your journey to wholeness.</li>
+      </ul>
+      <div class="sidebar-guarantee">7-day guarantee — if nothing clicked, full refund.</div>
+    </aside>
+    </div>
+
+    <div class="compare">
+      <div class="compare-row"><strong>Book One</strong><span>What to do, why, and how — the shift itself.</span></div>
+      <div class="compare-row"><strong>This Book</strong><span>Why you can understand it completely and still not believe it — and how that actually changes.</span></div>
+    </div>
+
+    <div class="nudge">
+      <p>If you're being honest with yourself right now — some part of you still isn't sure this fully landed.</p>
+      <p>That's not a flaw. That's exactly where I was too, after I'd already written the first book.</p>
+      <p>I didn't fix it by trying harder to believe. I fixed it by going further.</p>
+      <p>This is that.</p>
+    </div>
+
+    <div class="timer">
+      <div class="timer-label">This page closes in</div>
+      <div class="timer-clock" id="countdown">15:00</div>
+    </div>
+
+    <div class="price-block">
+      <div class="offer-badge">One Time Offer</div>
+      <div><span class="price-was">$135</span></div>
+      <div class="price-now">$68</div>
+      <div class="price-sub">Not necessary. Only if you're one of the ones this is for.</div>
+    </div>
+
+    <div class="cta-wrap">
+      <a href="https://buy.stripe.com/4gMbJ30mc5YT9zse1f1VK01" class="btn" id="upsell-btn">I Don't Believe This Fully Deep Down</a>
+      <p class="urgency" id="urgency-text">You're already here. Already in it. Don't let this become another thing you meant to do.</p>
+      <p class="fine-note">This isn't required to get results from Book One. It's for the part of you that already knows, but hasn't fully believed it yet.</p>
+    </div>
+  </div>
+</section>
+
+<div class="skip">
+  <a href="https://domsalchemy.netlify.app/" id="skip-link">No thanks.</a>
+</div>
+
+<footer>
+  Baby Steps to Choosing
+</footer>
+
+<script>
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var sessionId = params.get('session_id');
+  var btn = document.getElementById('upsell-btn');
+
+  if (sessionId && btn) {
+    fetch('/.netlify/functions/get-email?session_id=' + encodeURIComponent(sessionId))
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if (data && data.email) {
+          var url = new URL(btn.href);
+          url.searchParams.set('prefilled_email', data.email);
+          btn.href = url.toString();
+        }
+      })
+      .catch(function(){ /* fail silently — button still works with the plain link */ });
+  }
+})();
+</script>
+
+<script>
+(function(){
+  var DURATION = 15 * 60 * 1000; // 15 minutes
+  var STORAGE_KEY = 'jtc_offer_start';
+  var start = localStorage.getItem(STORAGE_KEY);
+  if(!start){
+    start = Date.now();
+    localStorage.setItem(STORAGE_KEY, start);
+  } else {
+    start = parseInt(start, 10);
+  }
+
+  var clockEl = document.getElementById('countdown');
+  var urgencyEl = document.getElementById('urgency-text');
+
+  function tick(){
+    var remaining = DURATION - (Date.now() - start);
+    if(remaining <= 0){
+      clockEl.textContent = "0:00";
+      urgencyEl.textContent = "This window has closed — but you're still here, so the choice is still yours.";
+      clearInterval(interval);
+      return;
+    }
+    var mins = Math.floor(remaining / 60000);
+    var secs = Math.floor((remaining % 60000) / 1000);
+    clockEl.textContent = mins + ":" + (secs < 10 ? "0" : "") + secs;
+  }
+
+  tick();
+  var interval = setInterval(tick, 1000);
+})();
+</script>
+
+</body>
+</html>
